@@ -70,7 +70,7 @@ use std::{
 };
 
 mod error;
-mod events;
+pub mod events;
 pub mod extrinsic;
 mod frame;
 mod metadata;
