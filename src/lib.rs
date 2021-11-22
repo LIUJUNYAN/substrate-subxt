@@ -255,7 +255,7 @@ impl<T: Runtime> ClientBuilder<T> {
 
         let events_decoder =
             EventsDecoder::new(metadata.clone(), self.event_type_registry);
-
+        log::info!("------------- subxt 5");
         Ok(Client {
             rpc,
             genesis_hash: genesis_hash?,
