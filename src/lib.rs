@@ -232,7 +232,7 @@ impl<T: Runtime> ClientBuilder<T> {
             rpc.system_properties(),
         )
         .await;
-        log::info!("-------- subxt 4 ");
+        log::info!("-------- subxt 4 ----- ");
 
         let metadata = metadata?;
         log::info!("-------- subxt 5 ");
