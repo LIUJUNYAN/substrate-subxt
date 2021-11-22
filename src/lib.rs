@@ -235,6 +235,8 @@ impl<T: Runtime> ClientBuilder<T> {
         log::info!("-------- subxt 4 ");
 
         let metadata = metadata?;
+        log::info!("-------- subxt 5 ");
+
 
         if let Err(missing) = self.event_type_registry.check_missing_type_sizes(&metadata)
         {
@@ -252,10 +254,11 @@ impl<T: Runtime> ClientBuilder<T> {
                 return Err(Error::MissingTypeSizes(missing.into_iter().collect()))
             }
         }
+        log::info!("------------- subxt 6");
 
         let events_decoder =
             EventsDecoder::new(metadata.clone(), self.event_type_registry);
-        log::info!("------------- subxt 5");
+        log::info!("------------- subxt 7");
         Ok(Client {
             rpc,
             genesis_hash: genesis_hash?,
