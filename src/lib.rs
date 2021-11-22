@@ -204,6 +204,7 @@ impl<T: Runtime> ClientBuilder<T> {
         let client = if let Some(client) = self.client {
             client
         } else {
+            log::info!("-------- subxt 1 ");
             let url = self.url.as_deref().unwrap_or("ws://127.0.0.1:9944");
             if url.starts_with("ws://") || url.starts_with("wss://") {
                 let client = WsClientBuilder::default()
@@ -216,7 +217,11 @@ impl<T: Runtime> ClientBuilder<T> {
                 RpcClient::Http(Arc::new(client))
             }
         };
+        log::info!("-------- subxt 2 ");
+
         let mut rpc = Rpc::new(client);
+        log::info!("-------- subxt 3 ");
+
         if self.accept_weak_inclusion {
             rpc.accept_weak_inclusion();
         }
@@ -227,6 +232,8 @@ impl<T: Runtime> ClientBuilder<T> {
             rpc.system_properties(),
         )
         .await;
+        log::info!("-------- subxt 4 ");
+
         let metadata = metadata?;
 
         if let Err(missing) = self.event_type_registry.check_missing_type_sizes(&metadata)
