@@ -14,35 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with subxt.  If not, see <http://www.gnu.org/licenses/>.
 
-use subxt::ClientBuilder;
-
-#[subxt::subxt(runtime_metadata_path = "examples/metadata.scale")]
+#[subxt::subxt(
+    runtime_metadata_path = "examples/polkadot_metadata.scale",
+    generated_type_derives = "Clone, Debug"
+)]
 pub mod polkadot {}
+
+use polkadot::runtime_types::frame_support::PalletId;
 
 #[async_std::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    env_logger::init();
-
-    let api = ClientBuilder::new()
-        .set_url("wss://rpc.polkadot.io")
-        .build()
-        .await?
-        .to_runtime_api::<polkadot::RuntimeApi<polkadot::DefaultConfig>>();
-
-    println!("new client ");
-    let block_number = 1;
-
-    let block_hash = api
-        .client
-        .rpc()
-        .block_hash(Some(block_number.into()))
-        .await?;
-
-    if let Some(hash) = block_hash {
-        println!("Block hash for block number {}: {}", block_number, hash);
-    } else {
-        println!("Block number {} not found.", block_number);
-    }
-
+    let pallet_id = PalletId([1u8; 8]);
+    let _ = <PalletId as Clone>::clone(&pallet_id);
     Ok(())
 }
