@@ -227,8 +227,8 @@ impl RuntimeGenerator {
                 pub struct DefaultConfig;
 
                 impl ::subxt::Config for DefaultConfig {
-                    type Index = u32;
-                    type BlockNumber = u32;
+                    type Index = u64;
+                    type BlockNumber = u64;
                     type Hash = ::subxt::sp_core::H256;
                     type Hashing = ::subxt::sp_runtime::traits::BlakeTwo256;
                     type AccountId = ::subxt::sp_runtime::AccountId32;
